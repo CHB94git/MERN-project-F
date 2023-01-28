@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import clienteAxios from '../config/axios'
 
 
@@ -50,7 +50,7 @@ const PacientesProvider = ({ children }) => {
             try {
                 const { data } = await clienteAxios.put(`/pacientes/${paciente.id}`, paciente, config)
 
-                const pacientesActualizado = pacientes.map(pacienteState => pacienteState._id === data._id ? data : pacienteState)
+                const pacientesActualizado = pacientes.map(pacienteState => (pacienteState._id === data._id) ? data : pacienteState)
 
                 setPacientes(pacientesActualizado)
 
@@ -105,15 +105,15 @@ const PacientesProvider = ({ children }) => {
 
     return (
         <PacientesContext.Provider
-            value={{
+            value={ {
                 pacientes,
                 guardarPaciente,
                 setEdition,
                 paciente,
                 eliminarPaciente
-            }}
+            } }
         >
-            {children}
+            { children }
         </PacientesContext.Provider>
     )
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import clienteAxios from '../config/axios'
 
 const AuthContext = createContext()
@@ -109,15 +109,15 @@ const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{
+            value={ {
                 auth,
                 setAuth,
                 cargando,
                 logOut,
                 updateProfile,
                 saveNewPassword
-            }}>
-            {children}
+            } }>
+            { children }
         </AuthContext.Provider>
     )
 }
